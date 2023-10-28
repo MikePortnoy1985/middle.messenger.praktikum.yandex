@@ -1,0 +1,34 @@
+<div class="chat-page">
+
+  <div class="chat-page__users">
+
+    <div class="chat-page__users_user-profile">
+      <span>Профиль {{> ProfileArrow}}</span>
+    </div>
+
+    <div class="chat-page__users_user-search">
+      <span>{{> SearchIcon}} Поиск</span>
+    </div>
+
+    <div class="chat-page__users_users-list">
+      {{#each users}}
+        {{> ChatUserBlock}}
+      {{/each}}
+    </div>
+
+  </div>
+
+  <div class="chat-page__messages">
+
+    <div class="chat-page__messages_messages-start">
+      <div>Выберите чат чтобы отправить сообщение</div>
+    </div>
+
+    <div class="chat-page__messages_inputs">
+      {{> MessageInput}}
+    </div>
+
+  </div>
+
+
+</div>

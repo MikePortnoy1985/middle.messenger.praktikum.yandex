@@ -1,0 +1,8 @@
+<div class="user-info-block__container">
+  <div class="{{userInfoBlockTitleClass}}">{{userInfoBlockTitle}}</div>
+  {{#if value}}
+    <div class="user-info-block__value">{{userInfoBlockValue}}</div>
+  {{else if input}}
+    {{> Input}}
+  {{/if}}
+</div>

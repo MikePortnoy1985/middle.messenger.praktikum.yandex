@@ -1,0 +1,30 @@
+@import url("./components/index.css");
+@import url("./pages/index.css");
+
+:root {
+  --font-default: #1e1e1e;
+  --color-white: #ffffff;
+  --color-blue: #3369f3;
+  --color-grey: #999999;
+  --color-grey-2: #eaeaea;
+  --color-arrow-background: #fbfbfb;
+  --color-search-background: #efefef;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Inter", "Roboto", sans-serif;
+  line-height: 1;
+  font-weight: 500;
+  font-style: normal;
+  color: var(--font-default);
+}

@@ -1,0 +1,90 @@
+.chat-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+
+  &__users {
+    height: 100%;
+    width: 20%;
+    background-color: var(--color-arrow-background);
+    padding-left: 10px;
+    padding-right: 10px;
+
+    &_user-profile {
+      height: 56px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      span {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 12px;
+        color: var(--color-grey);
+        cursor: pointer;
+      }
+    }
+
+    &_user-search {
+      height: 32px;
+      width: 100%;
+      border-radius: 5px;
+      background-color: var(--color-search-background);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      span {
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 12px;
+        color: var(--color-grey);
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+    }
+
+    &_users-list {
+      overflow-x: auto;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-height: calc(100% - 88px);
+    }
+  }
+
+  &__messages {
+    height: 100%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid var(--color-grey-2);
+    padding-inline: 20px;
+
+    &_messages-start {
+      height: calc(100% - 54px);
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &_inputs {
+      border-top: 1px solid var(--color-grey-2);
+      align-self: flex-end;
+      height: 54px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: auto;
+    }
+  }
+}

@@ -1,0 +1,11 @@
+<div class="custom-input__container">
+  <input
+    {{#if noBorder}}class="custom-input__input_no-border"{{else}}class="custom-input__input"{{/if}}
+    name="{{inputName}}"
+    id="{{inputId}}"
+    {{#if inputType}}type="{{inputType}}"{{else}}type="text"{{/if}}
+    value="{{inputValue}}"
+    required
+  />
+  <label class="custom-input__label" for="{{inputId}}">{{inputLabel}}</label>
+</div>
