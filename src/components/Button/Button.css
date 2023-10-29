@@ -1,0 +1,18 @@
+.custom-button {
+  padding-block: 12px;
+  background: var(--color-blue);
+  color: var(--color-white);
+  min-width: 50px;
+  width: 100%;
+  border-radius: 8px;
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 13px;
+  font-weight: 500;
+
+  &:active {
+    transform: translateY(1px);
+  }
+}

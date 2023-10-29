@@ -1,0 +1,14 @@
+<div class="page__container">
+  <div class="page__form-wrapper">
+    <h2 class="page__title">{{pageTitle}}</h2>
+    <form class="page__form">
+      {{#each inputs}}
+        {{> Input}}
+      {{/each}}
+    </form>
+    <div class="page__buttons">
+      {{> Button}}
+      {{> Link}}
+    </div>
+  </div>
+</div>

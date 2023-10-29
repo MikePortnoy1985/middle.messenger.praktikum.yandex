@@ -1,0 +1,45 @@
+.page {
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    min-width: 100vw;
+  }
+
+  &__form-wrapper {
+    width: 340px;
+    min-height: 450px;
+    border-radius: 12px;
+    background-color: var(--color-white);
+    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.14);
+    padding: 50px 30px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__title {
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: 500;
+  }
+
+  &__form {
+    padding-top: 54px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding-bottom: 60px;
+  }
+
+  &__buttons {
+    width: 100%;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+}
