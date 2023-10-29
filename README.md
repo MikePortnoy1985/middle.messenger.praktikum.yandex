@@ -6,10 +6,10 @@
 
 ## Используемые технологии:
 
-1. ![TypeScript](https://www.typescriptlang.org);
-2. Шаблонизатор ![Handlebars](https://handlebarsjs.com);
-3. Cборщик ![Vite](https://vitejs.dev);
-4. Для стилизации используется пост-процессор ![PostCSS](https://postcss.org);
+1. [TypeScript](https://www.typescriptlang.org)
+2. Шаблонизатор [Handlebars](https://handlebarsjs.com)
+3. Cборщик [Vite](https://vitejs.dev)
+4. Для стилизации используется пост-процессор ![PostCSS](https://postcss.org)
 
 *********
 
@@ -23,4 +23,4 @@
 
 ### Проект работает по ссылке ниже
 
-![netlify](https://rococo-syrniki-b35d69.netlify.app)
+[netlify](https://rococo-syrniki-b35d69.netlify.app)
