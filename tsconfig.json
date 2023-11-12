@@ -15,7 +15,10 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "esModuleInterop": true,
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["src", "global.d.ts", "vite-plugin-handlebars-precompile.ts"]
+  "include": ["src", "global.d.ts"]
 }

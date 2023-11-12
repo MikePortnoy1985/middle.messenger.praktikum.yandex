@@ -1,62 +1,55 @@
-import Components from "./components";
-import { renderLogin } from "./pages/Auth/Login";
-import { renderRegistration } from "./pages/Auth/Registration";
-import { renderStartChatPage } from "./pages/ChatPage/StartChatPage";
-import { renderErrorPage } from "./pages/ExtraPage/ErrorPage";
-import { renderNotFoundPage } from "./pages/ExtraPage/NotFoundPage";
-import { renderNavigation } from "./pages/Navigation/Navigation";
-import { renderUserEditPage } from "./pages/UserPage/UserEditDataPage";
-import { renderUserEditPasswordPage } from "./pages/UserPage/UserEditPasswordPage";
-import { renderUserProfilePage } from "./pages/UserPage/UserProfilePage";
-
-Components.registerPartials();
+import { CHAT_PAGE_DATA, ERROR_PAGE_DATA, LOGIN_PAGE_DATA, NOT_FOUND_PAGE_DATA, REGISTRATION_PAGE_DATA, USER_EDIT_DATA_PAGE_DATA, USER_EDIT_PASSWORD_PAGE_DATA, USER_PROFILE_PAGE_DATA } from './data';
+import { Auth } from './pages/Auth';
+import { ChatPage } from './pages/ChatPage';
+import { ExtraPage } from './pages/ExtraPage';
+import { renderNavigation } from './pages/Navigation';
+import { UserPage } from './pages/UserPage';
+import { renderPage } from './utils/renderPage';
 
 const appRouter = (href: string, main: HTMLElement) => {
   switch (true) {
-    case href.endsWith("/login"):
-      main.innerHTML = renderLogin();
+    case href.endsWith('/login'):
+      renderPage(main, new Auth(LOGIN_PAGE_DATA));
       break;
-    case href.endsWith("/registration"):
-      main.innerHTML = renderRegistration();
+    case href.endsWith('/registration'):
+      renderPage(main, new Auth(REGISTRATION_PAGE_DATA));
       break;
-    case href.endsWith("/500"):
-      main.innerHTML = renderErrorPage();
+    case href.endsWith('/500'):
+      renderPage(main, new ExtraPage(ERROR_PAGE_DATA));
       break;
-    case href.endsWith("/404"):
-      main.innerHTML = renderNotFoundPage();
+    case href.endsWith('/404'):
+      renderPage(main, new ExtraPage(NOT_FOUND_PAGE_DATA));
       break;
-    case href.endsWith("/chat"):
-      main.innerHTML = renderStartChatPage();
+    case href.endsWith('/chat'):
+      renderPage(main, new ChatPage(CHAT_PAGE_DATA));
       break;
-    case href.endsWith("/user-profile"):
-      main.innerHTML = renderUserProfilePage();
+    case href.endsWith('/user-profile'):
+      renderPage(main, new UserPage(USER_PROFILE_PAGE_DATA));
       break;
-    case href.endsWith("/user-edit"):
-      main.innerHTML = renderUserEditPage();
+    case href.endsWith('/user-edit'):
+      renderPage(main, new UserPage(USER_EDIT_DATA_PAGE_DATA));
       break;
-    case href.endsWith("/user-edit-password"):
-      main.innerHTML = renderUserEditPasswordPage();
+    case href.endsWith('/user-edit-password'):
+      renderPage(main, new UserPage(USER_EDIT_PASSWORD_PAGE_DATA));
       break;
     default:
-      main.innerHTML = "";
+      renderPage(main, new ExtraPage(NOT_FOUND_PAGE_DATA));
       break;
   }
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  const root = document.getElementById("root")!;
+document.addEventListener('DOMContentLoaded', () => {
+  const root = document.getElementById('root')!;
 
   const nav = renderNavigation();
 
-  root.insertAdjacentElement("afterbegin", nav);
+  root.insertAdjacentElement('afterbegin', nav);
 
-  const main = document.createElement("main");
+  const main = document.createElement('main');
 
   root.appendChild(main);
 
-  main.innerHTML = renderStartChatPage();
-
-  nav.addEventListener("click", (event) => {
+  nav.addEventListener('click', (event) => {
     if (event.target instanceof HTMLAnchorElement) {
       event.preventDefault();
 
@@ -64,5 +57,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  appRouter("/login", main);
+  appRouter('/login', main);
 });

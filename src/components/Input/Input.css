@@ -1,40 +1,40 @@
 .custom-input {
   &__input {
-    appearance: none;
-    outline: none;
-    border: none;
-    border-bottom: 1px solid var(--color-blue);
+    position: relative;
     width: 100%;
     height: 100%;
+    border: none;
+    border-bottom: 1px solid var(--color-blue);
+    appearance: none;
     font-size: 13px;
     line-height: 13px;
-    position: relative;
+    outline: none;
 
     &_no-border {
-      color: var(--color-grey);
-      border: none;
-      text-align: right;
       width: 100%;
+      border: none;
+      color: var(--color-grey);
+      text-align: right;
 
       &:focus-visible {
-        outline: none;
         border: none;
+        outline: none;
       }
     }
   }
 
   &__container {
     position: relative;
-    height: 20px;
     width: 280px;
+    height: 20px;
   }
 
   &__label {
+    position: absolute;
+    left: 0;
     color: var(--color-grey);
     font-size: 13px;
     line-height: 13px;
-    left: 0;
-    position: absolute;
     transition: all 0.2s ease-in;
   }
 
@@ -42,5 +42,24 @@
   &__input:valid + &__label {
     left: 0;
     transform: translateY(-17px) scale(0.8);
+  }
+
+  &__error-text {
+    display: inline-block;
+    width: 100%;
+    color: var(--color-danger);
+    font-size: 8px;
+    line-height: 8px;
+    text-align: center;
+  }
+
+  &__error-text_no-border {
+    display: inline-block;
+    width: 100%;
+    padding-top: 8px;
+    color: var(--color-danger);
+    font-size: 8px;
+    line-height: 8px;
+    text-align: right;
   }
 }

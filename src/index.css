@@ -3,18 +3,19 @@
 
 :root {
   --font-default: #1e1e1e;
-  --color-white: #ffffff;
+  --color-white: #fff;
   --color-blue: #3369f3;
-  --color-grey: #999999;
+  --color-grey: #999;
   --color-grey-2: #eaeaea;
   --color-arrow-background: #fbfbfb;
   --color-search-background: #efefef;
+  --color-danger: #f00;
 }
 
 * {
+  box-sizing: border-box;
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
 }
 
 html {
@@ -22,9 +23,9 @@ html {
 }
 
 body {
-  font-family: "Inter", "Roboto", sans-serif;
-  line-height: 1;
-  font-weight: 500;
-  font-style: normal;
   color: var(--font-default);
+  font-family: Inter, Roboto, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1;
 }

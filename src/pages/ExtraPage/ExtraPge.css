@@ -1,11 +1,11 @@
 .extra-page {
   &__container {
     display: flex;
+    min-width: 100vw;
+    min-height: 100vh;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    min-width: 100vw;
   }
 
   &__error-code {
