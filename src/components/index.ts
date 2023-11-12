@@ -1,38 +1,18 @@
-import Handlebars from "handlebars/runtime";
-import Button from "./Button/Button.hbs";
-import Input from "./Input/Input.hbs";
-import Link from "./Link/Link.hbs";
-import UserInfoBlock from "./UserInfoBlock/UserInfoBlock.hbs";
-import UserAvatar from "./UserAvatar/UserAvatar.hbs";
-import LeftArrow from "./LeftArrow/LeftArrow.hbs";
-import RightArrow from "./RightArrow/RightArrow.hbs";
-import ChatUserBlock from "./ChatUserBlock/ChatUserBlock.hbs";
-import ProfileArrow from "./ProfileArrow/ProfileArrow.hbs";
-import SearchIcon from "./SearchIcon/SearchIcon.hbs";
-import UploadAvatar from './UploadAvatar/UploadAvatar.hbs';
-import MessageInput from './MessageInput/MessageInput.hbs';
-
-class Components {
-  constructor(public data: Record<string, (params?: any) => string>) {}
-
-  registerPartials = () => {
-    Object.entries(this.data).forEach(([name, template]) =>
-      Handlebars.registerPartial(name, template)
-    );
-  };
-}
-
-export default new Components({
-  Button,
-  Input,
-  Link,
-  UserInfoBlock,
-  UserAvatar,
-  LeftArrow,
-  RightArrow,
-  ChatUserBlock,
-  ProfileArrow,
-  SearchIcon,
-  UploadAvatar,
-  MessageInput,
-});
+export { Button } from './Button';
+export type { TButtonProps } from './Button';
+export { Input } from './Input';
+export type { TInputProps } from './Input';
+export { Link } from './Link';
+export type { TLinkProps } from './Link';
+export { UserInfoBlock } from './UserInfoBlock';
+export type { TUserInfoBlockProps } from './UserInfoBlock';
+export { UserAvatar } from './UserAvatar';
+export { LeftArrow } from './LeftArrow';
+export { RightArrow } from './RightArrow';
+export { ChatUserBlock } from './ChatUserBlock';
+export type { TChatUserBlockProps } from './ChatUserBlock';
+export { ProfileArrow } from './ProfileArrow';
+export { SearchIcon } from './SearchIcon';
+export { UploadAvatar } from './UploadAvatar';
+export { MessageInput } from './MessageInput';
+export type { TMessageInputProps } from './MessageInput';

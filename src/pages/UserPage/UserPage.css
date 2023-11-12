@@ -1,18 +1,18 @@
 .user-page {
   &__container {
     display: grid;
-    grid-template-columns: 64px calc(100vw - 64px);
     height: 100vh;
+    grid-template-columns: 64px calc(100vw - 64px);
   }
 
   &__arrow {
-    height: 100%;
-    width: 100%;
-    background-color: var(--color-arrow-background);
     display: flex;
+    width: 100%;
+    height: 100%;
     align-items: center;
     justify-content: center;
     border-right: 1px solid var(--color-grey-2);
+    background-color: var(--color-arrow-background);
   }
 
   &__page {
@@ -20,11 +20,11 @@
   }
 
   &__layout {
-    margin: 0 auto;
-    width: 510px;
     display: flex;
+    width: 510px;
     flex-direction: column;
     align-items: center;
+    margin: 0 auto;
   }
 
   &__avatar {
@@ -53,10 +53,8 @@
     width: 100%;
     padding-top: 60px;
 
-    div {
-      &:last-child {
-        border-bottom: none;
-      }
+    &:last-child {
+      border-bottom: none;
     }
   }
 

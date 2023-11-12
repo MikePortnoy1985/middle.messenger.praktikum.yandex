@@ -1,5 +1,6 @@
-import nested from "postcss-nested";
+import nested from 'postcss-nested';
 
 export default {
-  plugins: [nested],
+  syntax: 'postcss-scss',
+  plugins: [nested]
 };

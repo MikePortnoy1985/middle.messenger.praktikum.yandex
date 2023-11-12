@@ -1,7 +1,7 @@
 .custom-link {
-  text-decoration: none;
   color: var(--color-blue);
   font-size: 11px;
-  line-height: 11px;
   font-weight: 500;
+  line-height: 11px;
+  text-decoration: none;
 }

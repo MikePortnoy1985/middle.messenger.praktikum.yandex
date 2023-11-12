@@ -1,16 +1,16 @@
 .custom-button {
-  padding-block: 12px;
+  width: 100%;
+  min-width: 50px;
+  border: none;
+  border-radius: 8px;
   background: var(--color-blue);
   color: var(--color-white);
-  min-width: 50px;
-  width: 100%;
-  border-radius: 8px;
-  font-family: inherit;
-  border: none;
   cursor: pointer;
+  font-family: inherit;
   font-size: 13px;
-  line-height: 13px;
   font-weight: 500;
+  line-height: 13px;
+  padding-block: 12px;
 
   &:active {
     transform: translateY(1px);
