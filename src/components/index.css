@@ -2,6 +2,7 @@
 @import url("./Input/Input.css");
 @import url("./Link/Link.css");
 @import url("./UserInfoBlock/UserInfoBlock.css");
-@import url("./UserAvatar/UserAvatar.css");
+@import url("./UploadAvatar/UploadAvatar.css");
 @import url("./ChatUserBlock/ChatUserBlock.css");
 @import url("./MessageInput/MessageInput.css");
+@import url("./Modal/Modal.css");

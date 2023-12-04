@@ -1,9 +1,10 @@
-import { Block } from '../../utils/Block';
+import { Block, TEvent } from '../../utils/Block';
 
 export type TLinkProps = {
-  href: string;
+  href?: string;
   text: string;
   id?: string;
+  events?: Array<TEvent>
 }
 
 export class Link extends Block<TLinkProps> {

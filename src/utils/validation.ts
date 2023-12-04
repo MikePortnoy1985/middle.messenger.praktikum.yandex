@@ -1,6 +1,6 @@
 export const validation: Record<string, (value: string) => string> = {
   login (value: string) {
-    if (value.trim().length <= 3 || value.trim().length >= 20) {
+    if (value.trim().length < 3 || value.trim().length > 20) {
       return 'Логин не может быть меньше 3 и больше 20 символов';
     }
 
@@ -11,7 +11,7 @@ export const validation: Record<string, (value: string) => string> = {
   },
 
   password (value: string) {
-    if (value.trim().length <= 8 || value.trim().length >= 40) {
+    if (value.trim().length < 8 || value.trim().length > 40) {
       return 'Пароль не может содержать меньше 8 и больше 40 символов';
     }
 
@@ -27,7 +27,7 @@ export const validation: Record<string, (value: string) => string> = {
   },
 
   oldPassword (value: string) {
-    if (value.trim().length <= 8 || value.trim().length >= 40) {
+    if (value.trim().length < 8 || value.trim().length > 40) {
       return 'Пароль не может содержать меньше 8 и больше 40 символов';
     }
 
@@ -43,7 +43,7 @@ export const validation: Record<string, (value: string) => string> = {
   },
 
   newPassword (value: string) {
-    if (value.trim().length <= 8 || value.trim().length >= 40) {
+    if (value.trim().length < 8 || value.trim().length > 40) {
       return 'Пароль не может содержать меньше 8 и больше 40 символов';
     }
 

@@ -11,9 +11,12 @@ export class MessageInput extends Block<TMessageInputProps> {
 
   render () {
     return `
-      <div class="message-input__container">
+      <form class="message-input__container">
         <input class="message-input__input" type="text" placeholder="Сообщение" name="message">
-      </div>
+        <button class="message-input__button" id="arrow">
+          <span class="message-input__arrow">&rarr;</span>
+        </button>
+      </form>
     `;
   };
 }

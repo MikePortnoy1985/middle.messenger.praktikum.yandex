@@ -6,8 +6,8 @@
     "dev": "vite",
     "lint": "eslint 'src/**/*.ts' --fix --ext .",
     "lint:types": "tsc --noEmit",
-    "build": "rm -rf ./dist && tsc && vite build",
-    "start": "npm run build && node ./server.js"
+    "build": "tsc && vite build",
+    "start": "npm run build && node ./server.cjs"
   },
   "devDependencies": {
     "@types/node": "^20.8.7",

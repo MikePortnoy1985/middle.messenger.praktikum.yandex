@@ -7,6 +7,8 @@ export type TAuthProps = {
   inputs: Array<TInputProps>;
   button: TButtonProps;
   link: TLinkProps;
+  submitRedirectCallback: (data?: any) => void | Promise<void>;
+  linkRedirectCallback: () => void;
 }
 
 export class Auth extends Block<TAuthProps> {
@@ -16,29 +18,32 @@ export class Auth extends Block<TAuthProps> {
 
   componentDidMount (): void {
     this.renderInputs();
-    this.renderButton();
-    this.renderLink();
+    this.renderButtons();
   }
 
   renderInputs (): void {
     const form = document.querySelector('.page__form');
     if (this.props?.inputs && form) {
+      form.innerHTML = '';
       this.props.inputs.map(el => form.insertAdjacentElement('beforeend', new Input({ ...el, events: [{ eventName: 'focusout', callback: this.onBlur.bind(this) }] }).getContent()!));
     }
   }
 
-  renderButton (): void {
+  renderButtons (): void {
     const wrapper = document.querySelector('.page__buttons');
     if (this.props?.button && wrapper) {
+      wrapper.innerHTML = '';
       wrapper.insertAdjacentElement('afterbegin', new Button({ ...this.props?.button, events: [{ eventName: 'click', callback: this.onSubmit.bind(this) }] }).getContent()!);
-    }
-  }
-
-  renderLink (): void {
-    const wrapper = document.querySelector('.page__buttons');
-
-    if (this.props?.link) {
-      wrapper?.insertAdjacentElement('beforeend', new Link(this.props?.link).getContent()!);
+      wrapper.insertAdjacentElement('beforeend', new Link({
+        ...this.props?.link,
+        events: [{
+          eventName: 'click',
+          callback: (event) => {
+            event.preventDefault();
+            this.props?.linkRedirectCallback();
+          }
+        }]
+      }).getContent()!);
     }
   }
 
@@ -79,17 +84,24 @@ export class Auth extends Block<TAuthProps> {
 
   onSubmit (): void {
     const data = this.formValidation();
-    console.log(data);
+
+    if (this.props?.inputs.some(input => input.errorText)) {
+      return;
+    }
+
+    this.props?.submitRedirectCallback(data);
   }
 
   render (): string {
     return `
-      <div class="page__container">
-        <div class="page__form-wrapper">
-          <h2 class="page__title">${this.props?.title}</h2>
-          <form class="page__form">
-          </form>
-          <div class="page__buttons">
+      <div>
+        <div class="page__container">
+          <div class="page__form-wrapper">
+            <h2 class="page__title">${this.props?.title}</h2>
+            <form class="page__form">
+            </form>
+            <div class="page__buttons">
+            </div>
           </div>
         </div>
       </div>
