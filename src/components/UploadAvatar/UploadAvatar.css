@@ -1,11 +1,16 @@
 .user-avatar {
   &__container {
     display: flex;
+    overflow: hidden;
     width: 130px;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     aspect-ratio: 1;
     background-color: var(--color-grey-2);
+  }
+
+  &__image {
+    width: 100%;
   }
 }

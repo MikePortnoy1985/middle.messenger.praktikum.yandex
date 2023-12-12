@@ -1,4 +1,5 @@
 .chat-page {
+  position: relative;
   display: flex;
   width: 100vw;
   height: 100vh;
@@ -15,7 +16,7 @@
       width: 100%;
       height: 56px;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: space-between;
 
       span {
         display: inline-flex;
@@ -51,10 +52,11 @@
 
     &_users-list {
       display: flex;
+      overflow: auto;
       width: 100%;
       max-height: calc(100% - 88px);
       flex-direction: column;
-      overflow-x: auto;
+      padding-top: 8px;
     }
   }
 
@@ -84,7 +86,82 @@
       align-self: flex-end;
       justify-content: center;
       border-top: 1px solid var(--color-grey-2);
-      margin-top: auto;
     }
+
+    &_page {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      flex-direction: column;
+    }
+
+    &_messages {
+      display: flex;
+      width: 100%;
+      min-height: 100%;
+      flex-direction: column;
+      justify-content: flex-end;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+      gap: 8px;
+      line-height: 15px;
+      padding-block: 8px;
+    }
+
+    &_page-chat {
+      width: 100%;
+      height: calc(100vh - 135px);
+      overflow-y: scroll;
+    }
+
+    &_page-controls {
+      display: flex;
+      width: 100%;
+      height: 96px;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--color-grey-2);
+
+      &-avatar {
+        overflow: hidden;
+        width: 45px;
+        border-radius: 50%;
+        aspect-ratio: 1;
+        background-color: var(--color-grey);
+      }
+
+      &-title {
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 13px;
+      }
+
+      &-left {
+        display: flex;
+        gap: 16px;
+      }
+
+      &-right {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  }
+}
+
+.message {
+  max-width: 40%;
+  padding: 12px;
+  border-radius: 30px;
+  background-color: var(--color-search-background);
+
+  &__left {
+    align-self: flex-start;
+  }
+
+  &__right {
+    align-self: flex-end;
   }
 }

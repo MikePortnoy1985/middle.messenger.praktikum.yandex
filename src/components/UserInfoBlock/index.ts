@@ -4,6 +4,7 @@ import { Input, TInputProps } from '../Input';
 export type TUserInfoBlockProps = {
   title: string;
   classTitle: string;
+  name?: string;
   value?: string;
   input?: TInputProps;
   events?: Array<TEvent>;
@@ -21,12 +22,14 @@ export class UserInfoBlock extends Block<TUserInfoBlockProps> {
   renderContent () {
     const container = document.getElementById(this.props?.title || '');
 
-    if (this.props?.value) {
-      container?.insertAdjacentHTML('beforeend', `<div class="user-info-block__value">${this.props?.value}</div>`);
-    }
+    if (container) {
+      if (this.props?.value) {
+        container?.insertAdjacentHTML('beforeend', `<div class="user-info-block__value">${this.props?.value}</div>`);
+      }
 
-    if (this.props?.input) {
-      container?.insertAdjacentElement('beforeend', new Input(this.props.input).getContent()!);
+      if (this.props?.input) {
+        container?.insertAdjacentElement('beforeend', new Input(this.props.input).getContent()!);
+      }
     }
   }
 

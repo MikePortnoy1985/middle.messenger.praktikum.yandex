@@ -1,7 +1,10 @@
+import { ROUTES } from '..';
+import UserController, { TCreateUserData, TLoginUserData } from '../controllers/UserController';
 import { TAuthProps } from '../pages/Auth';
 import { TChatPageProps } from '../pages/ChatPage';
 import { TExtraPageProps } from '../pages/ExtraPage';
 import { TUserPageProps } from '../pages/UserPage';
+import Router from '../utils/Router';
 
 export const LOGIN_PAGE_DATA: TAuthProps = {
   inputs: [
@@ -26,8 +29,17 @@ export const LOGIN_PAGE_DATA: TAuthProps = {
     id: 'loginButton'
   },
   link: {
-    text: 'Создать аккаунт',
-    href: '/login'
+    text: 'Создать аккаунт'
+  },
+  submitRedirectCallback: async (data: TLoginUserData) => {
+    const { error } = await UserController.loginUser(data);
+
+    if (!error) {
+      Router.go(ROUTES.CHAT_PAGE);
+    }
+  },
+  linkRedirectCallback: () => {
+    Router.go(ROUTES.REGISTRATION);
   }
 };
 
@@ -74,13 +86,6 @@ export const REGISTRATION_PAGE_DATA: TAuthProps = {
       id: 'password',
       label: 'Пароль',
       value: ''
-    },
-    {
-      name: 'password',
-      type: 'password',
-      id: 'password',
-      label: 'Пароль (еще раз)',
-      value: ''
     }
   ],
   title: 'Регистрация',
@@ -88,36 +93,35 @@ export const REGISTRATION_PAGE_DATA: TAuthProps = {
     text: 'Зарегистрироваться'
   },
   link: {
-    text: 'Войти',
-    href: '/registration'
+    text: 'Войти'
+  },
+  submitRedirectCallback: async (data: TCreateUserData) => {
+    const { error } = await UserController.createUser(data);
+
+    if (!error) {
+      Router.go(ROUTES.LOGIN);
+    }
+  },
+  linkRedirectCallback: () => {
+    Router.go(ROUTES.LOGIN);
   }
+
 };
 
 export const CHAT_PAGE_DATA: TChatPageProps = {
-  users: [
-    {
-      username: 'Robin',
-      message:
-        'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой. Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.',
-      time: '12:38',
-      messageCount: 9
-    },
-    {
-      username: 'Robin',
-      message:
-        'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой. Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.',
-      time: '12:38',
-      messageCount: 9
-    }
-  ]
+  activeChat: null,
+  chats: [],
+  onProfileClick: () => Router.go(ROUTES.PROFILE)
 };
 
 export const ERROR_PAGE_DATA: TExtraPageProps = {
   errorCode: '500',
   infoText: 'Мы уже фиксим',
   link: {
-    text: 'Назад к чатам',
-    href: '/'
+    text: 'Назад к чатам'
+  },
+  redirectCallback: () => {
+    Router.go(ROUTES.CHAT_PAGE);
   }
 };
 
@@ -125,67 +129,108 @@ export const NOT_FOUND_PAGE_DATA: TExtraPageProps = {
   errorCode: '404',
   infoText: 'Не туда попали',
   link: {
-    text: 'Назад к чатам',
-    href: '/'
+    text: 'Назад к чатам'
+  },
+  redirectCallback: () => {
+    Router.go(ROUTES.CHAT_PAGE);
   }
 };
 
 export const USER_PROFILE_PAGE_DATA: TUserPageProps = {
-  title: 'Batman',
+  title: '',
+  avatarSrc: '',
   infoBlocks: [
     {
       classTitle: 'user-info-block__title',
       title: 'Почта',
-      value: 'batman@yandex.ru'
+      value: '',
+      name: 'email'
     },
     {
       classTitle: 'user-info-block__title',
       title: 'Логин',
-      value: 'batman'
+      value: '',
+      name: 'login'
     },
     {
       classTitle: 'user-info-block__title',
       title: 'Имя',
-      value: 'Bat'
+      value: '',
+      name: 'first_name'
     },
     {
       classTitle: 'user-info-block__title',
       title: 'Фамилия',
-      value: 'Man'
+      value: '',
+      name: 'second_name'
     },
     {
       classTitle: 'user-info-block__title',
       title: 'Имя в чате',
-      value: 'Batman'
+      value: '',
+      name: 'display_name'
     },
     {
       classTitle: 'user-info-block__title',
       title: 'Телефон',
-      value: '+7 (707) 777 77 77'
+      value: '',
+      name: 'phone'
     }
   ],
   redirectLinks: [
     {
       classTitle: 'user-info-block__title_with-link',
-      title: 'Изменить данные'
+      title: 'Изменить данные',
+      events: [{
+        eventName: 'click',
+        callback: (event) => {
+          event.preventDefault();
+          if (event.target instanceof HTMLDivElement && event.target?.className === 'user-info-block__title_with-link') {
+            Router.go(ROUTES.EDIT_PROFILE);
+          };
+        }
+      }]
     },
     {
       classTitle: 'user-info-block__title_with-link',
-      title: 'Изменить пароль'
+      title: 'Изменить пароль',
+      events: [{
+        eventName: 'click',
+        callback: (event) => {
+          event.preventDefault();
+          if (event.target instanceof HTMLDivElement && event.target?.className === 'user-info-block__title_with-link') {
+            Router.go(ROUTES.EDIT_PASSWORD);
+          };
+        }
+      }]
     },
     {
       classTitle: 'user-info-block__title',
-      title: 'Выход'
+      title: 'Выход',
+      events: [{
+        eventName: 'click',
+        callback: async (event) => {
+          event.preventDefault();
+          if (event.target instanceof HTMLDivElement && event.target?.className === 'user-info-block__title') {
+            const { error } = await UserController.logoutUser();
+
+            if (!error) {
+              Router.go(ROUTES.LOGIN);
+            }
+          };
+        }
+      }]
     }
   ]
 };
 
 export const USER_EDIT_DATA_PAGE_DATA: TUserPageProps = {
   editAvatar: true,
+  avatarSrc: '',
   infoBlocks: [
     {
       input: {
-        value: 'batman@yandex.ru',
+        value: '',
         name: 'email',
         id: 'email',
         noBorder: true
@@ -195,7 +240,7 @@ export const USER_EDIT_DATA_PAGE_DATA: TUserPageProps = {
     },
     {
       input: {
-        value: 'batman',
+        value: '',
         name: 'login',
         id: 'login',
         noBorder: true
@@ -205,7 +250,7 @@ export const USER_EDIT_DATA_PAGE_DATA: TUserPageProps = {
     },
     {
       input: {
-        value: 'Bat',
+        value: '',
         name: 'first_name',
         id: 'first_name',
         noBorder: true
@@ -215,7 +260,7 @@ export const USER_EDIT_DATA_PAGE_DATA: TUserPageProps = {
     },
     {
       input: {
-        value: 'Man',
+        value: '',
         name: 'second_name',
         id: 'second_name',
         noBorder: true
@@ -225,7 +270,7 @@ export const USER_EDIT_DATA_PAGE_DATA: TUserPageProps = {
     },
     {
       input: {
-        value: 'Batman',
+        value: '',
         name: 'display_name',
         id: 'display_name',
         noBorder: true
@@ -235,7 +280,7 @@ export const USER_EDIT_DATA_PAGE_DATA: TUserPageProps = {
     },
     {
       input: {
-        value: '+7 (707) 777 77 77',
+        value: '',
         name: 'phone',
         id: 'phone',
         noBorder: true
@@ -253,10 +298,11 @@ export const USER_EDIT_DATA_PAGE_DATA: TUserPageProps = {
 
 export const USER_EDIT_PASSWORD_PAGE_DATA: TUserPageProps = {
   editAvatar: true,
+  avatarSrc: '',
   infoBlocks: [
     {
       input: {
-        value: 'qwerty',
+        value: '',
         name: 'oldPassword',
         id: 'oldPassword',
         type: 'password',
@@ -267,7 +313,7 @@ export const USER_EDIT_PASSWORD_PAGE_DATA: TUserPageProps = {
     },
     {
       input: {
-        value: 'qwerty123',
+        value: '',
         name: 'newPassword',
         id: 'newPassword',
         type: 'password',
@@ -275,17 +321,6 @@ export const USER_EDIT_PASSWORD_PAGE_DATA: TUserPageProps = {
       },
       classTitle: 'user-info-block__title',
       title: 'Новый пароль'
-    },
-    {
-      input: {
-        value: 'qwerty123',
-        name: 'newPassword',
-        id: 'newPassword',
-        type: 'password',
-        noBorder: true
-      },
-      classTitle: 'user-info-block__title',
-      title: 'Повторите новый пароль'
     }
   ],
   button: {
