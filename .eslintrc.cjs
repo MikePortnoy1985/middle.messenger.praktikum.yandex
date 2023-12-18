@@ -2,7 +2,7 @@ module.exports = {
   extends: ['eslint-config-standard'],
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
-  ignorePatterns: ['/*.d.ts'],
+  ignorePatterns: ['/*.d.ts', '*.test.ts'],
   rules: {
     semi: ['error', 'always'],
     'n/no-callback-literal': 'off',

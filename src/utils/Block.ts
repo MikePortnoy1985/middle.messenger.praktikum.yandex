@@ -6,7 +6,7 @@ export type TEvent = {
   callback: (event: Event) => void;
 }
 
-type TBlockProps = object & {
+export type TBlockProps = object & {
   events?: Array<TEvent>;
 }
 
